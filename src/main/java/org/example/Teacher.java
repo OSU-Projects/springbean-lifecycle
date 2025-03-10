@@ -16,6 +16,21 @@ import java.util.List;
  *
  *                      };
  *
+ * before destroying an object if we need to execute a method which might have some db call closes or file closes
+ * then we need to use @PreDestroy annotation to it
+ *
+ * we need to learn  about BeanFactoryPostProcessor and beanPostProcessor
+ *
+ * BeanFactoryPostProcessor:: it works on the metadata of bean - bean meta data
+ * like adding some properties or changing the name of bean etc...
+ *
+ * BeanPostProcessor
+ *  - it is an interface where we can implement 2 methods of it.
+ * 1. postProcessBeforeInitialization()
+ *  -    this method will call before constructor calling
+ * 2. postProcessAfterInitialization()
+ *  -    this method will call after bean constructor calling
+ *
  * */
 @Component
 public class Teacher implements InitializingBean {
@@ -48,6 +63,7 @@ public class Teacher implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         System.out.println(" After property set method is called.....");
     }
+
 
     @PreDestroy
     public void destroy(){
